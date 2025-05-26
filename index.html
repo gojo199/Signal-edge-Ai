@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SignalEdge AI</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .center {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 80%;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 15px;
+      background: #00ff99;
+      border: none;
+      color: black;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #plans {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      height: 100vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .plan {
+      background: #1e1e1e;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 10px;
+      width: 85%;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #00ff99;
+    }
+    #mainUI {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      height: 100vh;
+      overflow-y: auto;
+      text-align: center;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      margin: 5px;
+      background: #262626;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    .signal-box {
+      margin-top: 20px;
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      min-width: 200px;
+    }
+    .question {
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      color: #00ffff;
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 10%;
+      width: 80%;
+      background: #1e1e1e;
+      padding: 20px;
+      border: 2px solid #00ff99;
+      border-radius: 10px;
+      z-index: 100;
+    }
+    #insta {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="login" class="center">
+    <h1>SIGNAL EDGE AI</h1>
+    <p>Enter Your Access Key</p>
+    <input type="text" id="keyInput" placeholder="Enter Key..." />
+    <button onclick="verifyKey()">Login</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <div id="plans" class="center">
+    <span class="close-btn" onclick="closePlans()">✖</span>
+    <h2>Select a Plan</h2>
+    <div class="plan">Free Plan - Signal every 5 min<br/>BTC/USDT Access</div>
+    <div class="plan">Basic Plan - ₹99/month - 3 min<br/>+ Signal Explanation</div>
+    <div class="plan">Pro Plan - ₹199/month - 1 min<br/>+ History + Sentiment</div>
+    <div class="plan">Elite Plan - ₹299/month - 30 sec<br/>+ Fastest AI Feed</div>
+    <div id="insta">DM <b>@filxy____</b> on Instagram to buy key</div>
+  </div>
+
+  <div id="mainUI" class="center">
+    <div>
+      <button class="tab-btn" onclick="showSignal('BTC')">BTC</button>
+      <button class="tab-btn" onclick="showSignal('USDT')">USDT</button>
+    </div>
+    <div class="signal-box" id="signalArea">
+      <h2 id="coinName">BTC</h2>
+      <p id="signalText">Buy</p>
+      <div class="question" onclick="showPopup()">Why this signal?</div>
+    </div>
+  </div>
+
+  <div id="popup">
+    <p>AI detected volume spike + momentum shift<br/>Confidence: High</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+
+  <script>
+    const validKey = "edge123";
+    function verifyKey() {
+      const key = document.getElementById("keyInput").value;
+      if (key === validKey) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("plans").style.display = "flex";
+      } else {
+        document.getElementById("error").innerText = "Invalid Key";
+      }
+    }
+
+    function closePlans() {
+      document.getElementById("plans").style.display = "none";
+      document.getElementById("mainUI").style.display = "flex";
+    }
+
+    function showSignal(coin) {
+      document.getElementById("coinName").innerText = coin;
+      document.getElementById("signalText").innerText = (coin === "BTC") ? "Buy" : "Sell";
+    }
+
+    function showPopup() {
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
+</html>
