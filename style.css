@@ -1,0 +1,27 @@
+body {
+  background-color: #0f0f0f;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+input, button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+}
+#planTag, #marketSentiment, #confidenceTag {
+  margin-top: 10px;
+  font-weight: bold;
+}
+#signal {
+  font-size: 40px;
+  margin: 20px;
+  color: limegreen;
+}
+#insightBtn {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+}
